@@ -9,7 +9,7 @@ const aboutContent = "some about stuff";
 const contactContent = "some contact stuff";
 
 const app = express();
-mongoose.connect("mongodb://localhost:27017/blogDB", { useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect("mongodb+srv://jsharick7:sterence18@cluster0-kahol.mongodb.net/blogDB", { useUnifiedTopology: true, useNewUrlParser: true});
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -64,6 +64,6 @@ app.get("/posts/:postID", function(req, res){
 
 
 
-app.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
   console.log("listening on port 3000");
 });
