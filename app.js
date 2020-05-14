@@ -4,7 +4,8 @@ const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 
-const homeStartingContent = "Welcome to my Blog!";
+
+const homeStartingContent = "One developer's journey";
 const aboutContent = "some about stuff";
 const contactContent = "some contact stuff";
 
@@ -18,7 +19,9 @@ app.use(express.static("public"));
 
 const postSchema = {
   title:String,
-  content:String
+  subtitle: String,
+  content:String,
+  date: Date
 };
 
 const Post = mongoose.model("Post", postSchema);
@@ -43,7 +46,9 @@ app.get("/compose", function(req, res){
 app.post("/compose", function(req,res){
   const post = new Post ({
     title: req.body.postTitle,
-    content: req.body.postBody
+    subtitle: req.body.subtitle,
+    content: req.body.postBody,
+    date: req.body.date
   });
   post.save(function(err){
     if (!err){
@@ -57,7 +62,7 @@ app.post("/compose", function(req,res){
 app.get("/posts/:postID", function(req, res){
   const requestedPostID = (req.params.postID);
   Post.findOne({_id: requestedPostID}, function(err, post){
-    res.render("post", {title:post.title, content:post.content});
+    res.render("post", {title:post.title, subtitle:post.subtitle, content:post.content, date:post.date.toLocaleDateString("en-US")});
   });
 
 });

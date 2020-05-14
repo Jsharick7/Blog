@@ -1,20 +1,29 @@
 <%- include("./partials/header.ejs"); -%>
 
-<h1>Compose</h1>
+  <h1>Compose</h1>
 
-<form action="/compose" method="post">
-      <div class="form-group">
-    <label>Title</label>
-    <input class="form-control" type="text" name="postTitle"></input>
+  <form action="/compose" method="post">
+        <div class="form-group">
+      <label>Title</label>
+      <input class="form-control" type="text" name="postTitle" autocomplete="off"></input>
 
-    <label>Post</label>
-    <textarea class="form-control" name="postBody" rows="5" cols="30"></textarea>
+      <label>Subtitle</label>
+      <textarea class="form-control" name="subtitle" rows="5" cols="30" autocomplete="off"></textarea>
 
-  </div>
-    <button class="btn btn-primary" type="submit">Publish</button>
-    </form>
+      <label>Post</label>
+      <textarea class="form-control" name="postBody" rows="5" cols="30" autocomplete="off"></textarea>
+
+      <% let date = new Date(); %>
+
+      <input type="hidden" name="date" value=<%=date%>/>
+
+    </div>
+      <button class="btn btn-primary" type="submit">Publish</button>
+      </form>
 
 
 
 
-<%- include("./partials/footer.ejs"); -%>
+
+
+    <%- include("./partials/footer.ejs"); -%>
