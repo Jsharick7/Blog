@@ -13,9 +13,10 @@
       <label>Post</label>
       <textarea class="form-control" name="postBody" rows="5" cols="30" autocomplete="off"></textarea>
 
-      <% let date = new Date(); %>
+      <% let date = new Date().toLocaleDateString("en-US"); %>
+      
 
-      <input type="hidden" name="date" value=<%=date%>/>
+      <input type="hidden" name="date" value='<%=date%>' />
 
     </div>
       <button class="btn btn-primary" type="submit">Publish</button>

@@ -21,7 +21,7 @@ const postSchema = {
   title:String,
   subtitle: String,
   content:String,
-  date: Date
+  date: String
 };
 
 const Post = mongoose.model("Post", postSchema);
@@ -50,6 +50,9 @@ app.post("/compose", function(req,res){
     content: req.body.postBody,
     date: req.body.date
   });
+//   console.log(post.date);
+// var d = new Date(post.date);
+// console.log(d.getDate());
   post.save(function(err){
     if (!err){
         res.redirect("/");
@@ -65,7 +68,7 @@ app.post("/compose", function(req,res){
 app.get("/posts/:postID", function(req, res){
   const requestedPostID = (req.params.postID);
   Post.findOne({_id: requestedPostID}, function(err, post){
-    res.render("post", {title:post.title, subtitle:post.subtitle, content:post.content, date:post.date.toLocaleDateString("en-US")});
+    res.render("post", {title:post.title, subtitle:post.subtitle, content:post.content, date: post.date});
   });
 
 });
